@@ -15,16 +15,42 @@ public class Main {
 
         DepartmentDAO departmentDAO = new DepartmentDAO();
 
-        Department department =
-                departmentDAO.findByIdWithEmployees(1);
+        Department it = new Department("Marketing", "Ha Noi");
 
-        System.out.println("Department: " + department.getName());
+        Employee e1 = new Employee(
+                "Nguyen Van A",
+                "aa.nguyen@company.com",
+                Gender.MALE,
+                new BigDecimal("15000000"),
+                LocalDate.of(2022, 1, 10)
+        );
 
-        for (Employee e : department.getEmployees()) {
-            System.out.println(
-                    e.getFullName() + " - " + e.getEmail()
-            );
-        }
+        Employee e2 = new Employee(
+                "Tran Thi B",
+                "bb.tran@company.com",
+                Gender.FEMALE,
+                new BigDecimal("18000000"),
+                LocalDate.of(2021, 6, 1)
+        );
+
+        Employee e3 = new Employee(
+                "Le Van C",
+                "cc.le@company.com",
+                Gender.OTHER,
+                new BigDecimal("12000000"),
+                LocalDate.of(2023, 3, 15)
+        );
+
+
+        it.addEmployee(e1);
+        it.addEmployee(e2);
+        it.addEmployee(e3);
+
+
+        departmentDAO.save(it);
+
+        System.out.println("Department ID: " + it.getId());
+        System.out.println("Employees: " + it.getEmployees().size());
 
         JPAUtil.close();
     }

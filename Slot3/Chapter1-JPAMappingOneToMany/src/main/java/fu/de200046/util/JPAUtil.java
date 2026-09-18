@@ -8,7 +8,6 @@ public class JPAUtil {
     private static final EntityManagerFactory EMF = Persistence.createEntityManagerFactory("hsf302FU");
 
     private JPAUtil() {
-        // Private constructor to prevent instantiation
     }
 
     public static EntityManagerFactory getEMF() {

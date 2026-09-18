@@ -83,4 +83,28 @@ public class DepartmentDAO {
             em.close();
         }
     }
+
+    public void delete(int id) {
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+
+            Department d = em.find(Department.class, id);
+
+            if (d != null) {
+                em.remove(d);
+            }
+
+            em.getTransaction().commit();
+
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw e;
+        } finally {
+            em.close();
+        }
+    }
 }

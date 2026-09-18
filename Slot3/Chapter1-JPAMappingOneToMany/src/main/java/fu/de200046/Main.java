@@ -13,7 +13,8 @@ public class Main {
 
         DepartmentDAO departmentDAO = new DepartmentDAO();
 
-        List<Department> departments = departmentDAO.findAll();
+        List<Department> departments =
+                departmentDAO.findAllWithEmployees();
 
         for (Department d : departments) {
             System.out.println("Department: " + d.getName());

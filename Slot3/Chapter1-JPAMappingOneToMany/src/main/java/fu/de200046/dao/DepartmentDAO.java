@@ -5,6 +5,8 @@ import fu.de200046.util.JPAUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
+import java.util.List;
+
 public class DepartmentDAO {
 
     private final EntityManagerFactory emf = JPAUtil.getEMF();
@@ -42,6 +44,26 @@ public class DepartmentDAO {
                     )
                     .setParameter("id", id)
                     .getSingleResult();
+
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Department> findAll() {
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            List<Department> departments = em.createQuery(
+                    "SELECT d FROM Department d",
+                    Department.class
+            ).getResultList();
+
+            for (Department d : departments) {
+                d.getEmployees().size();
+            }
+
+            return departments;
 
         } finally {
             em.close();

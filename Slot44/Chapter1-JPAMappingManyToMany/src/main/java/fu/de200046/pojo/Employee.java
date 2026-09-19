@@ -116,19 +116,6 @@ public class Employee {
         this.active = active;
     }
 
-    private Department department;
-    @ManyToOne
-    @JoinColumn(name = "department_id")
-
-
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
-
     public void assignToProject(Project p) {
         this.projects.add(p);
         p.getEmployees().add(this);

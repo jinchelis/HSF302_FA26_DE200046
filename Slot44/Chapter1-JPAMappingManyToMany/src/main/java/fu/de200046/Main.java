@@ -131,6 +131,29 @@ public class Main {
                         + " - " + p.getProjectName());
             }
 
+            em.getTransaction().begin();
+            e1.assignToProject(p2);
+            em.getTransaction().commit();
+
+            // ===== TODO 5.10 =====
+            System.out.println("\n===== ACTIVE EMPLOYEES IN MORE THAN 1 PROJECT =====");
+
+            List<Employee> employees = em.createQuery(
+                    "SELECT e " +
+                            "FROM Employee e " +
+                            "WHERE e.active = true " +
+                            "AND SIZE(e.projects) > 1",
+                    Employee.class
+            ).getResultList();
+
+            for (Employee e : employees) {
+                System.out.println(
+                        e.getFullName()
+                                + " | Projects: "
+                                + e.getProjects().size()
+                );
+            }
+
         } catch (Exception e) {
 
             if (em.getTransaction().isActive()) {

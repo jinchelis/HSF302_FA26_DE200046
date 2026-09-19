@@ -8,6 +8,7 @@ import jakarta.persistence.EntityManager;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 public class Main {
 
@@ -92,6 +93,28 @@ public class Main {
                         + " - " + p.getProjectName());
             }
 
+            System.out.println("\n===== PROJECT STATISTICS =====");
+
+            List<Object[]> results = em.createQuery(
+                    "SELECT p.projectName, COUNT(e), SUM(e.salary) " +
+                            "FROM Project p JOIN p.employees e " +
+                            "WHERE e.active = true " +
+                            "GROUP BY p.projectName",
+                    Object[].class
+            ).getResultList();
+
+            for (Object[] row : results) {
+                String projectName = (String) row[0];
+                Long employeeCount = (Long) row[1];
+                BigDecimal totalSalary = (BigDecimal) row[2];
+
+                System.out.println(
+                        projectName
+                                + " | Employees: " + employeeCount
+                                + " | Total Salary: " + totalSalary
+                );
+            }
+
         } catch (Exception e) {
 
             if (em.getTransaction().isActive()) {
@@ -103,5 +126,6 @@ public class Main {
         } finally {
             em.close();
         }
+
     }
 }

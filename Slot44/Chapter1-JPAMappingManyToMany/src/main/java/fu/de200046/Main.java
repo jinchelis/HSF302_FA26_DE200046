@@ -13,16 +13,15 @@ import java.util.Set;
 public class Main {
 
     public static void main(String[] args) {
-        Employee e1 = new Employee();
-        e1.setEmail("test@gmail.com");
+        Employee e = new Employee();
+        e.setEmail("test@gmail.com");
 
-        Employee e2 = new Employee();
-        e2.setEmail("test@gmail.com");
+        Project p = new Project();
+        p.setProjectCode("P001");
 
-        Set<Employee> employees = new HashSet<>();
-        employees.add(e1);
-        employees.add(e2);
+        e.assignToProject(p);
 
-        System.out.println(employees.size());
+        System.out.println(e.getProjects().size());
+        System.out.println(p.getEmployees().size());
     }
 }

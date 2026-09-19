@@ -129,6 +129,11 @@ public class Employee {
         this.department = department;
     }
 
+    public void assignToProject(Project p) {
+        this.projects.add(p);
+        p.getEmployees().add(this);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

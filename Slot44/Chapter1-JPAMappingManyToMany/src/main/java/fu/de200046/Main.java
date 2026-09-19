@@ -115,6 +115,22 @@ public class Main {
                 );
             }
 
+            // ===== TODO 5.9 =====
+            System.out.println("\n===== UNASSIGN TEST =====");
+
+            em.getTransaction().begin();
+
+            e1.unassignFromProject(p2);
+
+            em.getTransaction().commit();
+
+            System.out.println(e1.getFullName() + " after unassign:");
+
+            for (Project p : e1.getProjects()) {
+                System.out.println("- " + p.getProjectCode()
+                        + " - " + p.getProjectName());
+            }
+
         } catch (Exception e) {
 
             if (em.getTransaction().isActive()) {

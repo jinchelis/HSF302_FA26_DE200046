@@ -121,6 +121,11 @@ public class Employee {
         p.getEmployees().add(this);
     }
 
+    public void unassignFromProject(Project p) {
+        this.projects.remove(p);
+        p.getEmployees().remove(this);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

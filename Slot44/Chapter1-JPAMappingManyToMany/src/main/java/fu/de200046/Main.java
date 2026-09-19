@@ -1,5 +1,6 @@
 package fu.de200046;
 
+import fu.de200046.dao.EmployeeDAO;
 import fu.de200046.pojo.Employee;
 import fu.de200046.pojo.Gender;
 import fu.de200046.pojo.Project;
@@ -153,6 +154,22 @@ public class Main {
                                 + e.getProjects().size()
                 );
             }
+
+            // ===== TODO 5.11 =====
+            System.out.println("\n===== DEACTIVATE EMPLOYEE =====");
+
+            EmployeeDAO employeeDAO = new EmployeeDAO();
+
+            employeeDAO.deactivateEmployee(e1.getId());
+
+            em.clear();
+
+            Employee deactivatedEmployee = em.find(Employee.class, e1.getId());
+
+            System.out.println(
+                    deactivatedEmployee.getFullName()
+                            + " | Active: " + deactivatedEmployee.isActive()
+            );
 
         } catch (Exception e) {
 

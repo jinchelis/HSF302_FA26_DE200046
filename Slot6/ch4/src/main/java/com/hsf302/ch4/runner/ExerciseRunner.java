@@ -1,5 +1,6 @@
 package com.hsf302.ch4.runner;
 
+import com.hsf302.ch4.dto.StudentSummary;
 import com.hsf302.ch4.pojo.Department;
 import com.hsf302.ch4.pojo.Gender;
 import com.hsf302.ch4.service.DepartmentService;
@@ -53,6 +54,7 @@ public class ExerciseRunner implements CommandLineRunner {
         todo15();
         todo16();
         todo17();
+        todo18();
     }
 
     private void bonus() {
@@ -232,6 +234,21 @@ public class ExerciseRunner implements CommandLineRunner {
 
         printList("Top 2 GPA of SE",
                 studentService.findTopNInDepartment("SE", 2));
+    }
+
+    private void todo18() {
+        title("TODO 18: Interface projection");
+
+        List<StudentSummary> list = studentService.getActiveSummaries();
+
+        list.forEach(p -> System.out.printf(
+                "   %s | %-15s | %.1f | %s%n",
+                p.getStudentCode(),
+                p.getFullName(),
+                p.getGpa(),
+                p.getDepartmentName()));
+
+        System.out.println("   -> " + list.size() + " record(s)");
     }
 
 }

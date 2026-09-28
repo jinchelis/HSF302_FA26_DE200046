@@ -52,4 +52,6 @@ public interface StudentService {
                          Double minGpa,
                          Boolean active); // TODO 24
 
+    Student updateGpa(String studentCode, double newGpa); // TODO 20
+
 }

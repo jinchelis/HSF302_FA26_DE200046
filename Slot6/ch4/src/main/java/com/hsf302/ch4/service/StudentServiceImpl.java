@@ -16,6 +16,7 @@ public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
 
     // Các method được cài đặt dần từ TODO 6
+
     @Override
     public long count() {
         return studentRepository.count();
@@ -25,5 +26,4 @@ public class StudentServiceImpl implements StudentService {
     public Optional<Student> findById(Long id) {
         return studentRepository.findById(id);
     }
-
 }

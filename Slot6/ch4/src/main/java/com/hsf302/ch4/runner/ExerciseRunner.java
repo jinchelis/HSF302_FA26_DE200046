@@ -55,6 +55,7 @@ public class ExerciseRunner implements CommandLineRunner {
         todo16();
         todo17();
         todo18();
+        todo19();
     }
 
     private void bonus() {
@@ -249,6 +250,25 @@ public class ExerciseRunner implements CommandLineRunner {
                 p.getDepartmentName()));
 
         System.out.println("   -> " + list.size() + " record(s)");
+    }
+
+    private void todo19() {
+        title("TODO 19: @Query + Pageable");
+
+        for (int i = 0; i < 2; i++) {
+            Page<Student> page =
+                    studentService.findActiveByDepartment("SE", i, 2);
+
+            printList(
+                    "SE active - page " + page.getNumber(),
+                    page.getContent()
+            );
+
+            System.out.println(
+                    "   totalElements=" + page.getTotalElements()
+                            + ", totalPages=" + page.getTotalPages()
+            );
+        }
     }
 
 }

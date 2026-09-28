@@ -45,6 +45,7 @@ public class ExerciseRunner implements CommandLineRunner {
     }
 
     private void partD() {
+        todo12();
     }
 
     private void bonus() {
@@ -167,6 +168,13 @@ public class ExerciseRunner implements CommandLineRunner {
 
         printList("Departments without students",
                 departmentService.findDepartmentsWithoutStudents());
+    }
+
+    private void todo12() {
+        title("TODO 12: JPQL + named parameter");
+
+        printList("SE, GPA >= 3.0",
+                studentService.findGoodStudents("SE", 3.0));
     }
 
 }

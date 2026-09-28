@@ -66,6 +66,7 @@ public class ExerciseRunner implements CommandLineRunner {
         todo20();
         todo21();
         todo22();
+        todo23();
     }
 
     // ===== helpers =====
@@ -330,6 +331,20 @@ public class ExerciseRunner implements CommandLineRunner {
         printList(
                 "Departments left",
                 departmentService.findAll()
+        );
+    }
+
+    private void todo23() {
+        title("TODO 23: Derived delete");
+
+        long deleted = studentService.deleteInactiveStudents();
+
+        System.out.println("Deleted: " + deleted);
+        System.out.println("Students left: " + studentService.count());
+
+        printList(
+                "Final statistics",
+                departmentService.getStatistics()
         );
     }
 

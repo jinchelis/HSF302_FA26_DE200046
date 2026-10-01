@@ -39,6 +39,8 @@ public interface EnrollmentService {
 
     void unenroll(String studentCode, String courseCode);
 
+    void switchCourse(String studentCode, String fromCode, String toCode);
+
 
 
 

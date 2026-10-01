@@ -87,5 +87,10 @@ public interface StudentRepository extends JpaRepository<Student, Long>,
     @Query("SELECT s FROM Student s WHERE s.gender = :gender")
     List<Student> findWithGender(@Param("gender") Gender gender);
 
+    // ===== Exercise 2 =====
+    List<Student> findByCourses_CodeOrderByFullNameAsc(String courseCode);
+    long countByCourses_Code(String courseCode);
+    List<Student> findByCourses_CodeAndActiveTrueOrderByFullNameAsc(String courseCode);
+
 
 }

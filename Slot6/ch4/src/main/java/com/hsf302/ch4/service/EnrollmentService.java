@@ -24,5 +24,9 @@ public interface EnrollmentService {
     // EnrollmentService
     List<Student> findStudentsWithMoreThan(int n);
 
+    // EnrollmentService
+    Student getStudentWithCourses(String studentCode);
+
+
 
 }

@@ -14,6 +14,7 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public class CourseServiceImpl implements CourseService {
 
+    // cài đặt dần từ TODO 6
     private final CourseRepository courseRepository;
     @Override
     public long count() {
@@ -30,6 +31,20 @@ public class CourseServiceImpl implements CourseService {
         return courseRepository.findById(id);
     }
 
+    @Override
+    public Optional<Course> findByCode(String code) {
+        return courseRepository.findByCode(code);
+    }
 
-    // cài đặt dần từ TODO 6
+    @Override
+    public List<Course> findBySemester(String semester) {
+        return courseRepository.findBySemesterOrderByCodeAsc(semester);
+    }
+
+    @Override
+    public long countBySemester(String semester) {
+        return courseRepository.countBySemester(semester);
+    }
+
+
 }

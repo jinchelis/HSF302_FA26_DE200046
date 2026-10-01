@@ -70,6 +70,7 @@ public class Exercise2Runner implements CommandLineRunner {
         todo21();
         todo22();
         todo23();
+        todo24();
     }
 
     // ===== helpers =====
@@ -281,6 +282,14 @@ public class Exercise2Runner implements CommandLineRunner {
         printList("Remaining courses", courseService.findAllOrderByCode());
         printList("Courses of IA002", enrollmentService.getCoursesOfStudent("IA002"));
     }
+
+    private void todo24() {
+        title("TODO 24: bulk delete enrollments of inactive students");
+        System.out.println("Deleted rows: " + enrollmentService.removeEnrollmentsOfInactiveStudents());
+        printCourseStats();
+        printList("Students without courses", enrollmentService.findStudentsWithoutCourses());
+    }
+
 
 
 }

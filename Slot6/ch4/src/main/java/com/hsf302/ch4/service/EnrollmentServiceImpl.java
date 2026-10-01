@@ -192,6 +192,13 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         checkAndEnroll(s, to);     // (2) đăng ký lớp mới — lỗi ⇒ RuntimeException ⇒ rollback cả (1)
     }
 
+    @Override
+    @Transactional
+    public int removeEnrollmentsOfInactiveStudents() {
+        return studentRepository.deleteEnrollmentsOfInactiveStudents();
+    }
+
+
 
 
 }

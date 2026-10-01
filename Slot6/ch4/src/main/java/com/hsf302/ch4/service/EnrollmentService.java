@@ -41,6 +41,8 @@ public interface EnrollmentService {
 
     void switchCourse(String studentCode, String fromCode, String toCode);
 
+    int removeEnrollmentsOfInactiveStudents();
+
 
 
 

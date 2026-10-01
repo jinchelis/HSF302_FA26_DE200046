@@ -31,11 +31,20 @@ public class Exercise2Runner implements CommandLineRunner {
         partE();
     }
 
-    private void partB() {  }
-    private void partC() {  }
-    private void partD() {  }
-    private void bonus() {  }
-    private void partE() {  }
+    private void partB() {
+    }
+
+    private void partC() {
+    }
+
+    private void partD() {
+    }
+
+    private void bonus() {
+    }
+
+    private void partE() {
+    }
 
     // ===== helpers =====
     private void title(String t) {
@@ -48,7 +57,9 @@ public class Exercise2Runner implements CommandLineRunner {
         System.out.println("   -> " + list.size() + " record(s)");
     }
 
-    /** Chạy 1 thao tác ghi, in [OK] hoặc [FAIL] + message (dùng cho Part E). */
+    /**
+     * Chạy 1 thao tác ghi, in [OK] hoặc [FAIL] + message (dùng cho Part E).
+     */
     private void attempt(String label, Runnable action) {
         try {
             action.run();
@@ -60,4 +71,5 @@ public class Exercise2Runner implements CommandLineRunner {
 
     // todo6() ... todo25() viết ở các TODO bên dưới
 }
+
 

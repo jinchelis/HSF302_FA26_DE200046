@@ -69,6 +69,12 @@ public class CourseServiceImpl implements CourseService {
         return courseRepository.getCourseStats();
     }
 
+    // CourseServiceImpl
+    @Override
+    public List<Course> findFullCourses() {
+        return courseRepository.findFullCourses();
+    }
+
 
 
 }

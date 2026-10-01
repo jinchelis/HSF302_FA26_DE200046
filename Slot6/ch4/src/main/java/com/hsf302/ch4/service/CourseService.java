@@ -22,5 +22,8 @@ public interface CourseService {
 
     List<CourseStatDTO> getStatistics();
 
+    // CourseService
+    List<Course> findFullCourses();
+
 }
 

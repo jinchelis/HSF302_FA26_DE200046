@@ -94,6 +94,14 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         }
         return studentRepository.getCreditSummary(minCredits);
     }
+    // EnrollmentServiceImpl
+    @Override
+    public List<Student> findStudentsWithMoreThan(int n) {
+        if (n < 0) {
+            throw new IllegalArgumentException("n must be >= 0");
+        }
+        return studentRepository.findStudentsWithMoreThanNCourses(n);
+    }
 
 }
 

@@ -68,6 +68,15 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         return studentRepository.findByCourses_CodeAndActiveTrueOrderByFullNameAsc(courseCode);
     }
 
+    @Override
+    public List<Student> findStudentsWithoutCourses() {
+        return studentRepository.findByCoursesIsEmptyOrderByFullNameAsc();
+    }
+
+    @Override
+    public boolean isEnrolled(String studentCode, String courseCode) {
+        return studentRepository.existsByStudentCodeAndCourses_Code(studentCode, courseCode);
+    }
 
 }
 

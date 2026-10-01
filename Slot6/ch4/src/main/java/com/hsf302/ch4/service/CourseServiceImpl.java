@@ -58,6 +58,10 @@ public class CourseServiceImpl implements CourseService {
                 : courseRepository.findByStudents_Department_CodeOrderByCodeAsc(deptCode);
     }
 
+    @Override
+    public List<Course> findCoursesWithoutStudents() {
+        return courseRepository.findByStudentsIsEmpty();
+    }
 
 
 }

@@ -7,6 +7,7 @@ import com.hsf302.ch4.service.DepartmentService;
 import com.hsf302.ch4.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import com.hsf302.ch4.pojo.Student;
@@ -19,6 +20,7 @@ import org.hibernate.LazyInitializationException;
 
 @Component
 @Order(2)
+@Profile("ex1")                 // chỉ chạy khi profile "ex1" được bật
 @RequiredArgsConstructor
 public class ExerciseRunner implements CommandLineRunner {
 
@@ -28,11 +30,12 @@ public class ExerciseRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        partB();
-        partC();
-        partD();
-        bonus();      // chạy trên dữ liệu gốc → trước Part E
-        partE();
+//        partB();
+//        partC();
+//        partD();
+//        bonus();      // chạy trên dữ liệu gốc → trước Part E
+//        partE();
+        todo26();
     }
 
     private void partB() {
@@ -56,6 +59,7 @@ public class ExerciseRunner implements CommandLineRunner {
         todo17();
         todo18();
         todo19();
+
     }
 
     private void bonus() {
@@ -67,6 +71,8 @@ public class ExerciseRunner implements CommandLineRunner {
         todo21();
         todo22();
         todo23();
+        todo25();
+
     }
 
     // ===== helpers =====
@@ -346,6 +352,24 @@ public class ExerciseRunner implements CommandLineRunner {
                 "Final statistics",
                 departmentService.getStatistics()
         );
+    }
+
+    private void todo25() {
+        title("TODO 25: Find by gender");
+
+        printList("Hien thi sinh vien co gioi tinh nam",
+                studentService.timTheoGioiTinh(Gender.MALE));
+
+
+    }
+
+    private void todo26() {
+        title("TODO 26: Department and student count");
+
+        departmentService.thongKeSoLuongSinhVienTheoKhoa()
+                .forEach(row -> System.out.println(
+                        row[0] + " | " + row[1] + " | " + row[2]
+                ));
     }
 
 }

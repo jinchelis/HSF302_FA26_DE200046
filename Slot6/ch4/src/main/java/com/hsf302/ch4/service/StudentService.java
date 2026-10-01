@@ -58,4 +58,7 @@ public interface StudentService {
 
     long deleteInactiveStudents(); // TODO 23
 
+    List<Student> timTheoGioiTinh(Gender gender); // TODO 25a
+
+    List<Student> timVoiGioiTinh(Gender gender); // TODO 25b
 }

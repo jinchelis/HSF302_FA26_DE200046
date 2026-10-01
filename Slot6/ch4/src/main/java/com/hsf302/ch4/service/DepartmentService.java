@@ -23,4 +23,6 @@ public interface DepartmentService {
 
     List<Department> findAll(); // TODO 22
 
+    List<Object[]> thongKeSoLuongSinhVienTheoKhoa();
+
 }

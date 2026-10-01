@@ -13,7 +13,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -217,6 +216,15 @@ public class StudentServiceImpl implements StudentService {
     @Transactional
     public long deleteInactiveStudents() {
         return studentRepository.deleteByActiveFalse();
+    }
+
+
+    public List<Student> timTheoGioiTinh(Gender gender) {
+        return studentRepository.findByGender(gender);
+    }
+
+    public List<Student> timVoiGioiTinh(Gender gender) {
+        return studentRepository.findWithGender(gender);
     }
 
 

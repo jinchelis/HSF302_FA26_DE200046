@@ -85,4 +85,8 @@ public class DepartmentServiceImpl implements DepartmentService {
         return departmentRepository.findAll(Sort.by("id"));
     }
 
+    @Override
+    public List<Object[]> thongKeSoLuongSinhVienTheoKhoa() {
+        return departmentRepository.thongKeSoLuongSinhVienTheoKhoa();
+    }
 }

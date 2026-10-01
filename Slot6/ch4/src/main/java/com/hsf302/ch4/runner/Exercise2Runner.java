@@ -10,6 +10,7 @@ import org.hibernate.LazyInitializationException;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.annotation.Order;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
@@ -56,7 +57,7 @@ public class Exercise2Runner implements CommandLineRunner {
         todo16();
         todo17();
         todo18();
-//        todo19();
+        todo19();
     }
 
     private void bonus() {
@@ -207,6 +208,18 @@ public class Exercise2Runner implements CommandLineRunner {
                 v.getStudentCode(), v.getFullName(), v.getCourseCode(), v.getCourseName(), v.getCredits()));
     }
 
+    private void todo19() {
+        title("TODO 19: paginate students of HSF302 (size 2, order by fullName)");
+        int pageIndex = 0;
+        Page<Student> page;
+        do {
+            page = enrollmentService.findStudentsInCoursePage("HSF302", pageIndex, 2);
+            printList("Page " + pageIndex, page.getContent());
+            pageIndex++;
+        } while (page.hasNext());
+        System.out.println("totalElements = " + page.getTotalElements()
+                + ", totalPages = " + page.getTotalPages());
+    }
 
 
 

@@ -31,11 +31,15 @@ public class Exercise2Runner implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        partB();
-        partC();
-        partD();
-        bonus();        // chạy trên dữ liệu gốc → trước Part E
-        partE();
+//        partB();
+//        partC();
+//        partD();
+//        bonus();        // chạy trên dữ liệu gốc → trước Part E
+//        partE();
+        todo26();
+        todo27();
+        todo28();
+        todo17();
     }
 
     private void partB() {
@@ -290,7 +294,23 @@ public class Exercise2Runner implements CommandLineRunner {
         printList("Students without courses", enrollmentService.findStudentsWithoutCourses());
     }
 
+    private void todo26() {
+        title("TODO 25: findByCreditBetweenMinAndMax");
+        printList("Courses with credits between 2 and 3", courseService.findByCreditBetweenMinAndMax(2.0, 3.0));
 
+    }
+
+    private void todo27() {
+            title("TODO 27: find By Keyword Ignore Case");
+            printList("Courses with keyword 'ing'", courseService.findByKeywordIgnoreCaseContaining("ing"));
+
+
+    }
+
+    private void todo28() {
+        title("TODO 28: find By Code Greater Than 3");
+        printList("Courses with code greater than 3", courseService.findByCreditsGreaterThanThree());
+    }
 
 }
 

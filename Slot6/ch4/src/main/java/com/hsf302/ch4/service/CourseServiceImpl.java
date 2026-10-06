@@ -21,6 +21,7 @@ public class CourseServiceImpl implements CourseService {
 
     // cài đặt dần từ TODO 6
     private final CourseRepository courseRepository;
+
     @Override
     public long count() {
         return courseRepository.count();
@@ -121,4 +122,22 @@ public class CourseServiceImpl implements CourseService {
 
 
 
+    @Override
+    public List<Course> findByCreditBetweenMinAndMax(Double min, Double max) {
+        if (min == null || max == null) {
+            throw new IllegalArgumentException("min and max must not be null");
+        }
+        return courseRepository.findByCreditBetweenMinAndMax(min, max);
+    }
+
+    @Override
+    public List<Course> findByKeywordIgnoreCaseContaining(String keyword) {
+        return courseRepository.findByNameIgnoreCaseContaining(keyword);
+    }
+
+    @Override
+    public List<Course> findByCreditsGreaterThanThree() {
+        return courseRepository.findByCreditsGreaterThanThree();
+    }
 }
+

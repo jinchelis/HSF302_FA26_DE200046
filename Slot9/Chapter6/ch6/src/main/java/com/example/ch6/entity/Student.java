@@ -1,6 +1,8 @@
-package com.hsf302.chapter6.entity;
+package com.example.ch6.entity;
+
 
 import jakarta.persistence.*;
+
 import jakarta.validation.constraints.*;
 
 @Entity

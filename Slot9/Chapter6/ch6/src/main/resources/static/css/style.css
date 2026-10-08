@@ -1,11 +1,6 @@
-package com.hsf302.chapter6;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
-public class StudentManagementApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(StudentManagementApplication.class, args);
-    }
-}
+body { background-color: #f8f9fa; }
+.navbar-brand { font-weight: bold; font-size: 1.3rem; }
+.table th { background-color: #343a40; color: #fff; }
+.gpa-high { color: #28a745; font-weight: bold; }
+.gpa-mid  { color: #fd7e14; }
+.gpa-low  { color: #dc3545; }

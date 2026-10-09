@@ -11,14 +11,25 @@
 <div class="container mt-5">
     <h2>Danh sách sản phẩm từ SQL Server</h2>
 
-    <div th:if="${message}" class="alert alert-success"
-         th:text="${message}"></div>
+    <!-- Thông báo thành công -->
+    <div th:if="${message}"
+         class="alert alert-success"
+         th:text="${message}">
+    </div>
 
+    <!-- Thông báo lỗi -->
+    <div th:if="${error}"
+         class="alert alert-danger"
+         th:text="${error}">
+    </div>
+
+    <!-- Thêm sản phẩm -->
     <a th:href="@{/sanpham-jpa/them}"
        class="btn btn-primary mb-3">
         + Thêm sản phẩm
     </a>
 
+    <!-- Danh sách sản phẩm -->
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
         <tr>
@@ -27,25 +38,49 @@
             <th>Tên sản phẩm</th>
             <th>Giá</th>
             <th>Số lượng</th>
+            <th>Thao tác</th>
         </tr>
         </thead>
 
         <tbody>
+        <!-- Hiển thị sản phẩm -->
         <tr th:each="sp : ${dsSanPham}">
             <td th:text="${sp.id}"></td>
             <td th:text="${sp.maSP}"></td>
             <td th:text="${sp.tenSP}"></td>
             <td th:text="${sp.gia}"></td>
             <td th:text="${sp.soLuong}"></td>
+
+            <td>
+                <!-- Sửa -->
+                <a th:href="@{/sanpham-jpa/sua/{id}(id=${sp.id})}"
+                   class="btn btn-warning btn-sm">
+                    Sửa
+                </a>
+
+                <!-- Xóa -->
+                <form th:action="@{/sanpham-jpa/xoa/{id}(id=${sp.id})}"
+                      method="post"
+                      class="d-inline"
+                      onsubmit="return confirm('Bạn có chắc muốn xóa sản phẩm này?')">
+
+                    <button type="submit"
+                            class="btn btn-danger btn-sm">
+                        Xóa
+                    </button>
+                </form>
+            </td>
         </tr>
 
+        <!-- Danh sách rỗng -->
         <tr th:if="${#lists.isEmpty(dsSanPham)}">
-            <td colspan="5" class="text-center">
+            <td colspan="6" class="text-center">
                 Chưa có sản phẩm nào.
             </td>
         </tr>
         </tbody>
     </table>
+
 </div>
 
 </body>

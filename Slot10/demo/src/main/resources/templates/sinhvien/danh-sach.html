@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${tieuDe}">Danh sách sinh viên</title>
+
+    <link rel="stylesheet"
+          th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet"
+          th:href="@{/vendor/bootstrap-icons/bootstrap-icons.min.css}">
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="container py-4">
+
+    <h2 class="mb-4">
+        <i class="bi bi-people-fill me-2"></i>
+        <span th:text="${tieuDe}">Danh sách sinh viên</span>
+    </h2>
+
+    <div class="table-responsive"
+         th:unless="${#lists.isEmpty(sinhViens)}">
+
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-dark">
+            <tr>
+                <th>STT</th>
+                <th>Mã sinh viên</th>
+                <th>Họ và tên</th>
+                <th>Điểm trung bình</th>
+                <th>Xếp loại</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="sv, stat : ${sinhViens}">
+                <td th:text="${stat.count}">1</td>
+                <td th:text="${sv.maSV}">SV001</td>
+                <td th:text="${sv.hoTen}">Nguyễn Văn An</td>
+                <td th:text="${#numbers.formatDecimal(sv.diemTB, 1, 1)}">
+                    8.5
+                </td>
+                <td>
+                    <span class="badge bg-success"
+                          th:if="${sv.diemTB >= 8}">
+                        Giỏi
+                    </span>
+
+                    <span class="badge bg-primary"
+                          th:if="${sv.diemTB >= 6.5 and sv.diemTB < 8}">
+                        Khá
+                    </span>
+
+                    <span class="badge bg-warning text-dark"
+                          th:if="${sv.diemTB < 6.5}">
+                        Trung bình
+                    </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="alert alert-info"
+         th:if="${#lists.isEmpty(sinhViens)}">
+        Không có sinh viên nào.
+    </div>
+
+    <p class="text-muted"
+       th:unless="${#lists.isEmpty(sinhViens)}">
+        Tổng số sinh viên:
+        <strong th:text="${#lists.size(sinhViens)}">0</strong>
+    </p>
+
+</div>
+
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

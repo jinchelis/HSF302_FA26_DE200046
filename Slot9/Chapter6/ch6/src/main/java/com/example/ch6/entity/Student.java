@@ -1,8 +1,7 @@
+
 package com.example.ch6.entity;
 
-
 import jakarta.persistence.*;
-
 import jakarta.validation.constraints.*;
 
 @Entity
@@ -30,9 +29,11 @@ public class Student {
     @Column(name = "age", nullable = false)
     private Integer age;
 
-    @NotBlank(message = "Chuyên ngành không được để trống")
-    @Column(name = "major", nullable = false, length = 20)
-    private String major;
+    // EX5: Many Students belong to one Major
+    @NotNull(message = "Chuyên ngành không được để trống")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "major_id", nullable = false)
+    private Major major;
 
     @NotNull(message = "GPA không được để trống")
     @DecimalMin(value = "0.0", message = "GPA tối thiểu là 0.0")
@@ -40,13 +41,12 @@ public class Student {
     @Column(name = "gpa", nullable = false)
     private Double gpa;
 
-    // ========== Constructors ==========
+    // Constructors
+    public Student() {
+    }
 
-    /** JPA bắt buộc có constructor không tham số */
-    public Student() {}
-
-    /** Dùng cho seed data — không có id vì DB tự sinh */
-    public Student(String name, String email, Integer age, String major, Double gpa) {
+    public Student(String name, String email, Integer age,
+                   Major major, Double gpa) {
         this.name = name;
         this.email = email;
         this.age = age;
@@ -54,28 +54,59 @@ public class Student {
         this.gpa = gpa;
     }
 
-    // ========== Getters & Setters ==========
+    // Getters & Setters
+    public Long getId() {
+        return id;
+    }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public String getName() {
+        return name;
+    }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public Integer getAge() { return age; }
-    public void setAge(Integer age) { this.age = age; }
+    public String getEmail() {
+        return email;
+    }
 
-    public String getMajor() { return major; }
-    public void setMajor(String major) { this.major = major; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    public Double getGpa() { return gpa; }
-    public void setGpa(Double gpa) { this.gpa = gpa; }
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public Major getMajor() {
+        return major;
+    }
+
+    public void setMajor(Major major) {
+        this.major = major;
+    }
+
+    public Double getGpa() {
+        return gpa;
+    }
+
+    public void setGpa(Double gpa) {
+        this.gpa = gpa;
+    }
 
     @Override
     public String toString() {
-        return "Student{id=" + id + ", name='" + name + "', email='" + email + "'}";
+        return "Student{id=" + id
+                + ", name='" + name
+                + "', email='" + email + "'}";
     }
 }

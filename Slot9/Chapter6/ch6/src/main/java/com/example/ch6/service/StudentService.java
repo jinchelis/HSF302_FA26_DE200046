@@ -2,6 +2,7 @@ package com.example.ch6.service;
 
 
 import com.example.ch6.entity.Student;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,4 +25,12 @@ public interface StudentService {
     boolean isEmailTaken(String email, Long excludeId);
 
     List<String> getMajors();
+
+    Page<Student> searchStudents(
+            String keyword,
+            int page,
+            int size,
+            String sortField,
+            String sortDirection
+    );
 }

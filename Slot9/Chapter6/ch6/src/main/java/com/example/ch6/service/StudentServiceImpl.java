@@ -3,12 +3,16 @@ package com.example.ch6.service;
 
 import com.example.ch6.entity.Student;
 import com.example.ch6.repository.StudentRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @Transactional(readOnly = true)          // mặc định: mọi method chỉ đọc
@@ -75,5 +79,47 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<String> getMajors() {
         return List.of("CNTT", "KTPM", "HTTT", "ATTT", "MMT");
+    }
+
+    @Override
+    public Page<Student> searchStudents(
+            String keyword,
+            int page,
+            int size,
+            String sortField,
+            String sortDirection
+    ) {
+        Set<String> allowedFields =
+                Set.of("id", "name", "email", "age", "major", "gpa");
+
+        if (!allowedFields.contains(sortField)) {
+            sortField = "id";
+        }
+
+        Sort.Direction direction =
+                "desc".equalsIgnoreCase(sortDirection)
+                        ? Sort.Direction.DESC
+                        : Sort.Direction.ASC;
+
+        Sort sort = Sort.by(direction, sortField);
+
+        Pageable pageable = PageRequest.of(
+                Math.max(0, page),
+                Math.max(1, Math.min(size, 100)),
+                sort
+        );
+
+        if (keyword == null || keyword.isBlank()) {
+            return studentRepository.findAll(pageable);
+        }
+
+        String search = keyword.trim();
+
+        return studentRepository
+                .findByNameContainingIgnoreCaseOrEmailContainingIgnoreCase(
+                        search,
+                        search,
+                        pageable
+                );
     }
 }

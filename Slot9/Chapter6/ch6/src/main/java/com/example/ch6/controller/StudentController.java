@@ -4,6 +4,7 @@ import com.example.ch6.entity.Student;
 import com.example.ch6.service.StudentService;
 import jakarta.validation.Valid;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,8 +35,42 @@ public class StudentController {
     // ==================== READ ALL ====================
 
     @GetMapping
-    public String list(Model model) {
-        model.addAttribute("students", studentService.findAll());
+    public String list(
+            @RequestParam(defaultValue = "") String keyword,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "id,asc") String sort,
+            Model model
+    ) {
+        String[] sortParts = sort.split(",", 2);
+
+        String sortField = sortParts[0];
+
+        String sortDirection = sortParts.length > 1
+                ? sortParts[1]
+                : "asc";
+
+        Page<Student> studentPage = studentService.searchStudents(
+                keyword,
+                page,
+                size,
+                sortField,
+                sortDirection
+        );
+
+        model.addAttribute("students", studentPage.getContent());
+        model.addAttribute("studentPage", studentPage);
+
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("currentPage", studentPage.getNumber());
+        model.addAttribute("totalPages", studentPage.getTotalPages());
+        model.addAttribute("totalItems", studentPage.getTotalElements());
+        model.addAttribute("size", size);
+
+        model.addAttribute("sort", sortField + "," + sortDirection);
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDirection", sortDirection);
+
         return "students/list";
     }
 

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/layout :: head(${pageTitle})}">
+    <title>Trang chủ</title>
+</head>
+
+<body>
+
+<!-- Header -->
+<div th:replace="~{fragments/header :: header}"></div>
+
+<!-- Nội dung trang chủ -->
+<main class="container py-5">
+
+    <div class="text-center mb-5">
+        <h1 class="fw-bold">
+            <i class="bi bi-house-door-fill text-primary"></i>
+            Welcome to Thymeleaf Demo
+        </h1>
+
+        <p class="lead text-muted">
+            Ứng dụng thực hành Spring Boot và Thymeleaf
+        </p>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- Sinh viên -->
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+
+                    <i class="bi bi-people-fill text-primary fs-1"></i>
+
+                    <h4 class="card-title mt-3">
+                        Quản lý sinh viên
+                    </h4>
+
+                    <p class="card-text text-muted">
+                        Xem danh sách sinh viên và điểm trung bình.
+                    </p>
+
+                    <a th:href="@{/sinhvien}"
+                       class="btn btn-primary">
+                        <i class="bi bi-arrow-right-circle me-1"></i>
+                        Xem danh sách
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm -->
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+
+                    <i class="bi bi-box-seam text-success fs-1"></i>
+
+                    <h4 class="card-title mt-3">
+                        Quản lý sản phẩm
+                    </h4>
+
+                    <p class="card-text text-muted">
+                        Thêm mới và xem danh sách sản phẩm.
+                    </p>
+
+                    <a th:href="@{/sanpham/danhsach}"
+                       class="btn btn-success">
+                        <i class="bi bi-arrow-right-circle me-1"></i>
+                        Xem sản phẩm
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</main>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<!-- JavaScript -->
+<div th:replace="~{fragments/layout :: scripts}"></div>
+
+</body>
+</html>

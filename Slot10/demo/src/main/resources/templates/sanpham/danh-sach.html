@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html lang="vi" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Danh sách sản phẩm</title>
 
-    <link rel="stylesheet"
-          th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
-    <link rel="stylesheet"
-          th:href="@{/vendor/bootstrap-icons/bootstrap-icons.min.css}">
-    <link rel="stylesheet"
-          th:href="@{/css/style.css}">
+<head th:replace="~{fragments/layout :: head('Danh sách sản phẩm')}">
+    <title>Danh sách sản phẩm</title>
 </head>
 
 <body>
-<div class="container py-5">
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="container py-5">
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>
@@ -28,7 +23,6 @@
         </a>
     </div>
 
-    <!-- Thông báo sau khi thêm thành công -->
     <div class="alert alert-success alert-dismissible fade show"
          th:if="${thongBao != null}"
          role="alert">
@@ -42,17 +36,16 @@
                 aria-label="Close"></button>
     </div>
 
-    <!-- Danh sách rỗng -->
     <div class="alert alert-info"
          th:if="${#lists.isEmpty(danhSach)}">
         Chưa có sản phẩm nào.
     </div>
 
-    <!-- Bảng sản phẩm -->
     <div class="table-responsive"
          th:unless="${#lists.isEmpty(danhSach)}">
 
         <table class="table table-bordered table-striped table-hover align-middle">
+
             <thead class="table-dark">
             <tr>
                 <th>STT</th>
@@ -69,25 +62,27 @@
                 <td th:text="${stat.count}">1</td>
                 <td th:text="${sp.maSP}">SP001</td>
                 <td th:text="${sp.tenSP}">Bàn phím cơ</td>
-                <td th:text="${#numbers.formatDecimal(sp.gia, 1, 0)}">
-                    500000
-                </td>
+                <td th:text="${#numbers.formatDecimal(sp.gia, 1, 0)}">500000</td>
                 <td th:text="${sp.soLuong}">2</td>
                 <td th:text="${#numbers.formatDecimal(sp.gia * sp.soLuong, 1, 0)}">
                     1000000
                 </td>
             </tr>
             </tbody>
+
         </table>
 
         <p class="text-muted">
             Tổng số sản phẩm:
             <strong th:text="${#lists.size(danhSach)}">0</strong>
         </p>
+
     </div>
 
-</div>
+</main>
 
-<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<div th:replace="~{fragments/footer :: footer}"></div>
+<div th:replace="~{fragments/layout :: scripts}"></div>
+
 </body>
 </html>

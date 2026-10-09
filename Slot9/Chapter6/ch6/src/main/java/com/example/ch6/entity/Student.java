@@ -31,8 +31,8 @@ public class Student {
 
     // EX5: Many Students belong to one Major
     @NotNull(message = "Chuyên ngành không được để trống")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "major_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "major_id", nullable = true)
     private Major major;
 
     @NotNull(message = "GPA không được để trống")

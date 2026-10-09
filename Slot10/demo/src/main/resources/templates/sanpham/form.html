@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Thêm sản phẩm</title>
+
+    <!-- Bootstrap Offline -->
+    <link rel="stylesheet"
+          th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+
+    <!-- Bootstrap Icons Offline -->
+    <link rel="stylesheet"
+          th:href="@{/vendor/bootstrap-icons/bootstrap-icons.min.css}">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-6">
+
+            <div class="card shadow-sm">
+
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="bi bi-plus-circle me-2"></i>
+                        Thêm sản phẩm
+                    </h4>
+                </div>
+
+                <div class="card-body">
+
+                    <form th:action="@{/sanpham/them}"
+                          th:object="${sanPham}"
+                          method="post">
+
+                        <!-- Mã sản phẩm -->
+                        <div class="mb-3">
+                            <label for="maSP" class="form-label">
+                                Mã sản phẩm
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   th:field="*{maSP}"
+                                   placeholder="Nhập mã sản phẩm"
+                                   required>
+                        </div>
+
+                        <!-- Tên sản phẩm -->
+                        <div class="mb-3">
+                            <label for="tenSP" class="form-label">
+                                Tên sản phẩm
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   th:field="*{tenSP}"
+                                   placeholder="Nhập tên sản phẩm"
+                                   required>
+                        </div>
+
+                        <!-- Giá sản phẩm -->
+                        <div class="mb-3">
+                            <label for="gia" class="form-label">
+                                Giá sản phẩm
+                            </label>
+
+                            <input type="number"
+                                   class="form-control"
+                                   th:field="*{gia}"
+                                   min="0"
+                                   step="0.01"
+                                   required>
+                        </div>
+
+                        <!-- Số lượng -->
+                        <div class="mb-3">
+                            <label for="soLuong" class="form-label">
+                                Số lượng
+                            </label>
+
+                            <input type="number"
+                                   class="form-control"
+                                   th:field="*{soLuong}"
+                                   min="0"
+                                   step="1"
+                                   required>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="d-flex justify-content-between">
+
+                            <a th:href="@{/sanpham/danhsach}"
+                               class="btn btn-secondary">
+                                <i class="bi bi-arrow-left me-1"></i>
+                                Danh sách
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-primary">
+                                <i class="bi bi-save me-1"></i>
+                                Lưu sản phẩm
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+</html>

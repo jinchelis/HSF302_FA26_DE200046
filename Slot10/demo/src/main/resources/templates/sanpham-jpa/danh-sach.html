@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách sản phẩm - JPA</title>
+    <link rel="stylesheet"
+          th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <h2>Danh sách sản phẩm từ SQL Server</h2>
+
+    <div th:if="${message}" class="alert alert-success"
+         th:text="${message}"></div>
+
+    <a th:href="@{/sanpham-jpa/them}"
+       class="btn btn-primary mb-3">
+        + Thêm sản phẩm
+    </a>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Mã SP</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="sp : ${dsSanPham}">
+            <td th:text="${sp.id}"></td>
+            <td th:text="${sp.maSP}"></td>
+            <td th:text="${sp.tenSP}"></td>
+            <td th:text="${sp.gia}"></td>
+            <td th:text="${sp.soLuong}"></td>
+        </tr>
+
+        <tr th:if="${#lists.isEmpty(dsSanPham)}">
+            <td colspan="5" class="text-center">
+                Chưa có sản phẩm nào.
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm sản phẩm - JPA</title>
+    <link rel="stylesheet"
+          th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <h2>Thêm sản phẩm vào SQL Server</h2>
+
+    <form th:action="@{/sanpham-jpa/them}"
+          th:object="${sanPham}"
+          method="post"
+          class="card p-4 mt-3">
+
+        <div class="mb-3">
+            <label class="form-label">Mã sản phẩm</label>
+            <input type="text" th:field="*{maSP}"
+                   class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Tên sản phẩm</label>
+            <input type="text" th:field="*{tenSP}"
+                   class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Giá</label>
+            <input type="number" th:field="*{gia}"
+                   class="form-control" min="0" step="0.01" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Số lượng</label>
+            <input type="number" th:field="*{soLuong}"
+                   class="form-control" min="0" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Lưu sản phẩm
+        </button>
+
+        <a th:href="@{/sanpham-jpa/danhsach}"
+           class="btn btn-secondary mt-2">
+            Xem danh sách
+        </a>
+    </form>
+</div>
+
+</body>
+</html>

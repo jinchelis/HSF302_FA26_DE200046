@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="~{fragments/layout :: commonHead(${pageTitle})}"></th:block>
+</head>
+
+<body>
+
+<nav th:replace="~{fragments/layout :: navbar('khoahoc')}"></nav>
+
+<main class="container" style="max-width: 640px">
+
+    <h2 class="h4 mb-3" th:text="${pageTitle}">
+        Form khóa học
+    </h2>
+
+    <form th:action="@{/khoahoc/luu}"
+          th:object="${khoaHoc}"
+          method="post"
+          class="card card-body shadow-sm">
+
+        <!-- ID ẩn: null khi thêm, có giá trị khi sửa -->
+        <input type="hidden" th:field="*{id}"/>
+
+        <!-- Tên khóa học -->
+        <div class="mb-3">
+            <label for="tenKhoaHoc" class="form-label">
+                Tên khóa học
+                <span class="text-danger">*</span>
+            </label>
+
+            <input type="text"
+                   class="form-control"
+                   th:field="*{tenKhoaHoc}"
+                   maxlength="100"
+                   required
+                   placeholder="Nhập tên khóa học"/>
+        </div>
+
+        <!-- Giảng viên -->
+        <div class="mb-3">
+            <label for="giangVien" class="form-label">
+                Giảng viên
+            </label>
+
+            <input type="text"
+                   class="form-control"
+                   th:field="*{giangVien}"
+                   maxlength="100"
+                   placeholder="Nhập tên giảng viên"/>
+        </div>
+
+        <!-- Số tín chỉ -->
+        <div class="mb-3">
+            <label for="soTinChi" class="form-label">
+                Số tín chỉ
+            </label>
+
+            <input type="number"
+                   class="form-control"
+                   th:field="*{soTinChi}"
+                   min="1"
+                   step="1"
+                   placeholder="Nhập số tín chỉ"/>
+        </div>
+
+        <!-- Nút thao tác -->
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-save me-1"></i>
+                Lưu khóa học
+            </button>
+
+            <a th:href="@{/khoahoc}"
+               class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left me-1"></i>
+                Quay lại
+            </a>
+        </div>
+
+    </form>
+
+</main>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+
+</body>
+</html>

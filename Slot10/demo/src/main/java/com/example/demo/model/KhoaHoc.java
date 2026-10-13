@@ -10,10 +10,19 @@ public class KhoaHoc {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "ten_khoa_hoc", nullable = false, length = 100)
+    @Column(
+            name = "ten_khoa_hoc",
+            nullable = false,
+            length = 100,
+            columnDefinition = "nvarchar(100)"
+    )
     private String tenKhoaHoc;
 
-    @Column(name = "giang_vien", length = 100)
+    @Column(
+            name = "giang_vien",
+            length = 100,
+            columnDefinition = "nvarchar(100)"
+    )
     private String giangVien;
 
     @Column(name = "so_tin_chi")

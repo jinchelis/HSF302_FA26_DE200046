@@ -7,7 +7,7 @@
 
 <body>
 
-<div th:replace="~{fragments/header :: header}"></div>
+<nav th:replace="~{fragments/layout :: navbar('sanpham')}"></nav>
 
 <main class="container py-5">
 
@@ -16,7 +16,7 @@
 
             <div class="card shadow-sm">
 
-                <div class="card-header bg-primary text-white">
+                <div class="card-header bg-dark text-white">
                     <h4 class="mb-0">
                         <i class="bi bi-plus-circle me-2"></i>
                         Thêm sản phẩm
@@ -73,7 +73,7 @@
                                 Danh sách
                             </a>
 
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-dark">
                                 <i class="bi bi-save me-1"></i>
                                 Lưu sản phẩm
                             </button>

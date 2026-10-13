@@ -8,7 +8,7 @@
 <body>
 
 <!-- Header -->
-<div th:replace="~{fragments/header :: header}"></div>
+<nav th:replace="~{fragments/layout :: navbar('home')}"></nav>
 
 <!-- Nội dung trang chủ -->
 <main class="container py-5">
@@ -84,7 +84,7 @@
 <div th:replace="~{fragments/footer :: footer}"></div>
 
 <!-- JavaScript -->
-<div th:replace="~{fragments/layout :: scripts}"></div>
+<div <th:block th:replace="~{fragments/layout :: scripts}"></th:block>></div>
 
 </body>
 </html>

@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="vi"
+      xmlns:th="http://www.thymeleaf.org"
+      th:lang="${#locale.language}">
+
+<head th:replace="~{fragments/layout :: head(#{form.success})}">
+    <title>Đăng ký thành công</title>
+</head>
+
+<body>
+
+<nav th:replace="~{fragments/layout :: navbar('dangky')}"></nav>
+
+<main class="container" style="max-width: 640px">
+
+    <div class="alert alert-success">
+        <h2 class="h4" th:text="#{form.success}">
+            Đăng ký thành công!
+        </h2>
+
+        <p class="mb-0"
+           th:if="${hoTen}"
+           th:text="#{form.success.greeting(${hoTen})}">
+            Xin chào, thông tin của bạn đã được ghi nhận.
+        </p>
+    </div>
+
+    <a th:href="@{/dangky}"
+       class="btn btn-outline-dark"
+       th:text="#{form.link.again}">
+        Đăng ký thêm
+    </a>
+
+</main>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+
+</body>
+</html>

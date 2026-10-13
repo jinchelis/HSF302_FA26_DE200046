@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="vi"
+      xmlns:th="http://www.thymeleaf.org"
+      th:lang="${#locale.language}">
+
+<head th:replace="~{fragments/layout :: head(#{form.title.dangky})}">
+    <title>Đăng ký tài khoản</title>
+</head>
+
+<body>
+
+<nav th:replace="~{fragments/layout :: navbar('dangky')}"></nav>
+
+<main class="container" style="max-width: 640px">
+
+    <!-- Chuyển đổi ngôn ngữ -->
+    <div class="text-end mb-3">
+        <a th:href="@{/dangky(lang=vi)}"
+           class="btn btn-sm"
+           th:classappend="${#locale.language == 'vi'} ? 'btn-dark' : 'btn-outline-dark'">
+            Tiếng Việt
+        </a>
+
+        <a th:href="@{/dangky(lang=en)}"
+           class="btn btn-sm"
+           th:classappend="${#locale.language == 'en'} ? 'btn-dark' : 'btn-outline-dark'">
+            English
+        </a>
+    </div>
+
+    <h2 class="h4 mb-3" th:text="#{form.title.dangky}">
+        Đăng ký tài khoản
+    </h2>
+
+    <form th:action="@{/dangky}"
+          th:object="${nguoiDung}"
+          method="post"
+          class="card card-body shadow-sm"
+          novalidate>
+
+        <!-- Danh sách tổng hợp lỗi -->
+        <div th:if="${#fields.hasAnyErrors()}"
+             class="alert alert-danger py-2">
+
+            <strong th:text="#{form.errors.summary}">
+                Vui lòng kiểm tra lại:
+            </strong>
+
+            <ul class="mb-0">
+                <li th:each="err : ${#fields.allErrors()}"
+                    th:text="${err}">
+                    Lỗi
+                </li>
+            </ul>
+        </div>
+
+        <!-- Họ tên -->
+        <div class="mb-3">
+            <label for="hoTen"
+                   class="form-label"
+                   th:text="#{form.label.hoten}">
+                Họ tên
+            </label>
+
+            <input type="text"
+                   class="form-control"
+                   th:field="*{hoTen}"
+                   th:errorclass="is-invalid">
+
+            <div class="invalid-feedback"
+                 th:errors="*{hoTen}">
+                Lỗi họ tên
+            </div>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+            <label for="email"
+                   class="form-label"
+                   th:text="#{form.label.email}">
+                Email
+            </label>
+
+            <input type="email"
+                   class="form-control"
+                   th:field="*{email}"
+                   th:errorclass="is-invalid">
+
+            <div class="invalid-feedback"
+                 th:errors="*{email}">
+                Lỗi email
+            </div>
+        </div>
+
+        <!-- Tuổi -->
+        <div class="mb-3">
+            <label for="tuoi"
+                   class="form-label"
+                   th:text="#{form.label.tuoi}">
+                Tuổi
+            </label>
+
+            <input type="number"
+                   class="form-control"
+                   th:field="*{tuoi}"
+                   th:errorclass="is-invalid">
+
+            <div class="invalid-feedback"
+                 th:errors="*{tuoi}">
+                Lỗi tuổi
+            </div>
+        </div>
+
+        <!-- Số điện thoại -->
+        <div class="mb-3">
+            <label for="soDienThoai"
+                   class="form-label"
+                   th:text="#{form.label.sdt}">
+                Số điện thoại
+            </label>
+
+            <input type="text"
+                   class="form-control"
+                   th:field="*{soDienThoai}"
+                   th:classappend="${#fields.hasErrors('soDienThoai')} ? 'is-invalid'">
+
+            <div class="invalid-feedback"
+                 th:errors="*{soDienThoai}">
+                Lỗi số điện thoại
+            </div>
+        </div>
+
+        <button type="submit"
+                class="btn btn-dark"
+                th:text="#{form.button.dangky}">
+            Đăng ký
+        </button>
+
+    </form>
+</main>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+
+</body>
+</html>

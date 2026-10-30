@@ -4,6 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 import java.util.Map;
 
@@ -173,12 +179,131 @@ public class LoginController {
         // Đăng nhập đúng
         lblError.setText("");
 
-        // TODO 6:
-        // Mở cửa sổ Welcome
+        openWelcome(
+                user,
+                role,
+                (Stage) btnLogin
+                        .getScene()
+                        .getWindow()
+        );
     }
 
-    // TODO 7
+    // TODO 6: Mở màn hình Welcome và truyền dữ liệu
+    private void openWelcome(
+            String user,
+            String role,
+            Stage loginStage
+    ) {
+
+        try {
+
+            FXMLLoader loader =
+                    new FXMLLoader(
+                            getClass().getResource(
+                                    "welcome-view.fxml"
+                            )
+                    );
+
+            Parent root =
+                    loader.load();
+
+            WelcomeController controller =
+                    loader.getController();
+
+            controller.setUser(
+                    user,
+                    role
+            );
+
+            Stage stage =
+                    new Stage();
+
+            stage.setTitle("Chào mừng");
+
+            stage.setScene(
+                    new Scene(
+                            root,
+                            360,
+                            200
+                    )
+            );
+
+            stage.show();
+
+            loginStage.close();
+
+        } catch (IOException ex) {
+
+            lblError.setText(
+                    "Không mở được màn hình chào mừng: "
+                            + ex.getMessage()
+            );
+        }
+    }
+
+    // TODO 7: Xử lý quên mật khẩu
     @FXML
     private void handleForgot() {
+
+        TextInputDialog dialog =
+                new TextInputDialog();
+
+        dialog.setTitle(
+                "Quên mật khẩu"
+        );
+
+        dialog.setHeaderText(
+                "Nhập email để lấy lại mật khẩu"
+        );
+
+        dialog.setContentText(
+                "Email:"
+        );
+
+        dialog.showAndWait()
+                .ifPresent(email -> {
+
+                    if (email.matches(
+                            "^[\\w.+-]+@[\\w-]+(\\.[\\w-]+)+$"
+                    )) {
+
+                        Alert alert =
+                                new Alert(
+                                        Alert.AlertType.INFORMATION
+                                );
+
+                        alert.setTitle(
+                                "Thông báo"
+                        );
+
+                        alert.setHeaderText(null);
+
+                        alert.setContentText(
+                                "Đã gửi hướng dẫn tới "
+                                        + email
+                        );
+
+                        alert.showAndWait();
+
+                    } else {
+
+                        Alert alert =
+                                new Alert(
+                                        Alert.AlertType.WARNING
+                                );
+
+                        alert.setTitle(
+                                "Cảnh báo"
+                        );
+
+                        alert.setHeaderText(null);
+
+                        alert.setContentText(
+                                "Email không hợp lệ"
+                        );
+
+                        alert.showAndWait();
+                    }
+                });
     }
 }

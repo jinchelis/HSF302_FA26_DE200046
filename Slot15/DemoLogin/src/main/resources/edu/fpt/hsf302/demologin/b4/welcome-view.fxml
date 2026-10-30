@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="edu.fpt.hsf302.demologin.b4.WelcomeController"
+      alignment="CENTER"
+      spacing="15">
+
+    <padding>
+        <Insets top="25"
+                right="25"
+                bottom="25"
+                left="25"/>
+    </padding>
+
+    <Label fx:id="lblWelcome"
+           text="Xin chào!"
+           wrapText="true"
+           style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+
+</VBox>

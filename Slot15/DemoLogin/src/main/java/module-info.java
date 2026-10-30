@@ -1,6 +1,7 @@
 module edu.fpt.hsf302.demologin {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.desktop;
 
 
     opens edu.fpt.hsf302.demologin to javafx.fxml;

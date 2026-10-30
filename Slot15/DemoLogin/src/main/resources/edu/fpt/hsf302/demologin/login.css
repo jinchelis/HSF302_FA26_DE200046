@@ -1,0 +1,114 @@
+.root {
+    -fx-background-color: #ffffff;
+    -fx-font-family: "Segoe UI";
+}
+
+/* ================= LEFT ================= */
+
+.left-panel {
+    -fx-background-color: linear-gradient(
+        to bottom right,
+        #0f4c81,
+        #1976d2
+    );
+}
+
+.brand {
+    -fx-text-fill: #b9dcff;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-letter-spacing: 2px;
+}
+
+.system-title {
+    -fx-text-fill: white;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-line-spacing: 4px;
+}
+
+.description {
+    -fx-text-fill: #dceeff;
+    -fx-font-size: 15px;
+    -fx-line-spacing: 5px;
+}
+
+.left-footer {
+    -fx-text-fill: #b9dcff;
+    -fx-font-size: 11px;
+}
+
+/* ================= RIGHT ================= */
+
+.right-panel {
+    -fx-background-color: #f8fafc;
+}
+
+.login-form {
+    -fx-padding: 25px;
+}
+
+.welcome {
+    -fx-text-fill: #1976d2;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.login-title {
+    -fx-text-fill: #172033;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}
+
+.subtitle {
+    -fx-text-fill: #7a8496;
+    -fx-font-size: 13px;
+}
+
+.field-label {
+    -fx-text-fill: #344054;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+/* ================= INPUT ================= */
+
+.input {
+    -fx-background-color: white;
+    -fx-border-color: #d7dce5;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 0 13px;
+    -fx-font-size: 14px;
+}
+
+.input:focused {
+    -fx-border-color: #1976d2;
+    -fx-border-width: 1.5px;
+}
+
+/* ================= CHECKBOX ================= */
+
+.remember {
+    -fx-text-fill: #596273;
+    -fx-font-size: 13px;
+}
+
+/* ================= BUTTON ================= */
+
+.login-button {
+    -fx-background-color: #1976d2;
+    -fx-background-radius: 6px;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.login-button:hover {
+    -fx-background-color: #125ca8;
+}
+
+.login-button:pressed {
+    -fx-background-color: #0d477f;
+}

@@ -12,6 +12,8 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RegisterApp extends Application {
     private static final String STRONG_PASSWORD =
@@ -228,13 +230,13 @@ public class RegisterApp extends Application {
                     }
                 });
 
-        btnRegister.setOnAction(e -> {
-            // TODO 7: đăng ký tài khoản
-        });
+        btnRegister.setOnAction(e ->
+                handleRegister()
+        );
 
-        btnReset.setOnAction(e -> {
-            // TODO 8: reset form
-        });
+        btnReset.setOnAction(e ->
+                resetForm()
+        );
     }
 
     // TODO 6: Tính độ mạnh mật khẩu
@@ -274,6 +276,123 @@ public class RegisterApp extends Application {
                         + LEVEL_COLOR[level]
                         + ";"
         );
+    }
+
+    // TODO 7: Xử lý đăng ký
+    private void handleRegister() {
+
+        boolean valid = true;
+
+        if (!vFullName()) valid = false;
+        if (!vEmail()) valid = false;
+        if (!vUsername()) valid = false;
+        if (!vPassword()) valid = false;
+        if (!vConfirm()) valid = false;
+        if (!vGender()) valid = false;
+        if (!vDob()) valid = false;
+        if (!vMajor()) valid = false;
+
+        if (!valid) {
+            return;
+        }
+
+        String gender =
+                ((RadioButton) tgGender
+                        .getSelectedToggle())
+                        .getText();
+
+        List<String> hobbies =
+                new ArrayList<>();
+
+        if (chkSport.isSelected()) {
+            hobbies.add("Thể thao");
+        }
+
+        if (chkMusic.isSelected()) {
+            hobbies.add("Âm nhạc");
+        }
+
+        if (chkGame.isSelected()) {
+            hobbies.add("Game");
+        }
+
+        if (chkReading.isSelected()) {
+            hobbies.add("Đọc sách");
+        }
+
+        String username =
+                tfUsername.getText()
+                        .trim()
+                        .toLowerCase();
+
+        User user =
+                new User(
+                        tfFullName.getText().trim(),
+                        tfEmail.getText().trim(),
+                        username,
+                        pfPassword.getText(),
+                        gender,
+                        dpDob.getValue(),
+                        cbMajor.getValue(),
+                        hobbies
+                );
+
+        UserStore.add(user);
+
+        Alert alert =
+                new Alert(
+                        Alert.AlertType.INFORMATION
+                );
+
+        alert.setTitle("Đăng ký");
+        alert.setHeaderText(null);
+        alert.setContentText(
+                "Đăng ký tài khoản thành công!"
+        );
+
+        alert.showAndWait();
+
+        // TODO 9 sẽ chuyển sang màn hình đăng nhập
+    }
+
+    // TODO 8: Làm lại form
+    private void resetForm() {
+
+        tfFullName.clear();
+        tfEmail.clear();
+        tfUsername.clear();
+
+        pfPassword.clear();
+        pfConfirm.clear();
+
+        tgGender.selectToggle(null);
+
+        dpDob.setValue(null);
+        cbMajor.setValue(null);
+
+        chkSport.setSelected(false);
+        chkMusic.setSelected(false);
+        chkGame.setSelected(false);
+        chkReading.setSelected(false);
+
+        chkAgree.setSelected(false);
+
+        errFullName.setText("");
+        errEmail.setText("");
+        errUsername.setText("");
+        errPassword.setText("");
+        errConfirm.setText("");
+        errGender.setText("");
+        errDob.setText("");
+        errMajor.setText("");
+
+        pbStrength.setProgress(0);
+        lblStrength.setText("Rất yếu");
+        lblStrength.setStyle(
+                "-fx-text-fill: #d93025;"
+        );
+
+        tfFullName.requestFocus();
     }
 
     // TODO 3: Giao diện đăng ký

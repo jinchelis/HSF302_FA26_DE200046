@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RegisterApp extends Application {
+    private Scene scene;
+    private Parent registerView;
+
     private static final String STRONG_PASSWORD =
             "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^\\w\\s]).{8,}$";
 
@@ -81,15 +84,15 @@ public class RegisterApp extends Application {
     private final Label errMajor = new Label();
 
     @Override
-
     public void start(Stage stage) {
+
         setupControls();
         registerEvents();
 
-        Parent registerView =
+        registerView =
                 buildRegisterView();
 
-        Scene scene =
+        scene =
                 new Scene(
                         registerView,
                         580,
@@ -352,7 +355,9 @@ public class RegisterApp extends Application {
 
         alert.showAndWait();
 
-        // TODO 9 sẽ chuyển sang màn hình đăng nhập
+        scene.setRoot(
+                buildLoginView(username)
+        );
     }
 
     // TODO 8: Làm lại form
@@ -768,6 +773,168 @@ public class RegisterApp extends Application {
         );
 
         return ok;
+    }
+    // TODO 9: Màn hình đăng nhập
+    private Parent buildLoginView(String prefillUsername) {
+
+        TextField tfLoginUsername =
+                new TextField(prefillUsername);
+
+        PasswordField pfLoginPassword =
+                new PasswordField();
+
+        Label lblLoginError =
+                new Label();
+
+        lblLoginError.setStyle(
+                "-fx-text-fill: #d93025;"
+        );
+
+        Button btnLogin =
+                new Button("Đăng nhập");
+
+        Button btnBack =
+                new Button("Quay lại đăng ký");
+
+        btnLogin.setDefaultButton(true);
+
+        GridPane grid =
+                new GridPane();
+
+        grid.setHgap(10);
+        grid.setVgap(10);
+
+        grid.add(
+                new Label("Username:"),
+                0,
+                0
+        );
+
+        grid.add(
+                tfLoginUsername,
+                1,
+                0
+        );
+
+        grid.add(
+                new Label("Mật khẩu:"),
+                0,
+                1
+        );
+
+        grid.add(
+                pfLoginPassword,
+                1,
+                1
+        );
+
+        ColumnConstraints c0 =
+                new ColumnConstraints(100);
+
+        ColumnConstraints c1 =
+                new ColumnConstraints();
+
+        c1.setHgrow(
+                Priority.ALWAYS
+        );
+
+        grid.getColumnConstraints()
+                .addAll(c0, c1);
+
+        btnLogin.setOnAction(e -> {
+
+            String username =
+                    tfLoginUsername.getText()
+                            .trim()
+                            .toLowerCase();
+
+            String password =
+                    pfLoginPassword.getText();
+
+            UserStore.login(
+                    username,
+                    password
+            ).ifPresentOrElse(
+
+                    user -> {
+
+                        lblLoginError.setText("");
+
+                        Alert alert =
+                                new Alert(
+                                        Alert.AlertType.INFORMATION
+                                );
+
+                        alert.setTitle(
+                                "Đăng nhập"
+                        );
+
+                        alert.setHeaderText(null);
+
+                        alert.setContentText(
+                                "Xin chào "
+                                        + user.fullName()
+                                        + "!"
+                        );
+
+                        alert.showAndWait();
+                    },
+
+                    () -> {
+
+                        lblLoginError.setText(
+                                "Sai username hoặc mật khẩu"
+                        );
+
+                        pfLoginPassword.clear();
+                        pfLoginPassword.requestFocus();
+                    }
+            );
+        });
+
+        btnBack.setOnAction(e ->
+                scene.setRoot(registerView)
+        );
+
+        Hyperlink linkRegister =
+                new Hyperlink(
+                        "Chưa có tài khoản? Đăng ký"
+                );
+
+        linkRegister.setOnAction(e ->
+                scene.setRoot(registerView)
+        );
+
+        HBox actions =
+                new HBox(
+                        10,
+                        btnLogin,
+                        btnBack
+                );
+
+        actions.setAlignment(
+                Pos.CENTER_RIGHT
+        );
+
+        VBox root =
+                new VBox(
+                        15,
+                        new Label("ĐĂNG NHẬP"),
+                        grid,
+                        lblLoginError,
+                        actions,
+                        linkRegister
+                );
+
+        root.setPadding(
+                new Insets(25)
+        );
+
+        root.setAlignment(
+                Pos.TOP_CENTER
+        );
+
+        return root;
     }
 
     public static void main(String[] args) {

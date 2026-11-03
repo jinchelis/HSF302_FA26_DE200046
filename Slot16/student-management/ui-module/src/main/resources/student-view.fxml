@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.ui.controller.StudentController">
+
+    <top>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="15" right="15" bottom="10" left="15"/>
+            </padding>
+
+            <Label text="Student Management System"
+                   styleClass="title"/>
+
+            <HBox spacing="10">
+                <TextField fx:id="searchField"
+                           promptText="Search by name or email..."
+                           HBox.hgrow="ALWAYS"/>
+
+                <Button text="Search"
+                        onAction="#handleSearch"/>
+
+                <Button text="Refresh"
+                        onAction="#handleRefresh"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="table">
+            <columns>
+                <TableColumn fx:id="idColumn"
+                             text="ID"
+                             prefWidth="80"/>
+
+                <TableColumn fx:id="nameColumn"
+                             text="Name"
+                             prefWidth="250"/>
+
+                <TableColumn fx:id="emailColumn"
+                             text="Email"
+                             prefWidth="300"/>
+
+                <TableColumn fx:id="ageColumn"
+                             text="Age"
+                             prefWidth="100"/>
+            </columns>
+
+            <BorderPane.margin>
+                <Insets top="5"
+                        right="15"
+                        bottom="10"
+                        left="15"/>
+            </BorderPane.margin>
+        </TableView>
+    </center>
+
+    <bottom>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10"
+                        right="15"
+                        bottom="15"
+                        left="15"/>
+            </padding>
+
+            <HBox spacing="10">
+                <Label text="Name:"/>
+
+                <TextField fx:id="nameField"
+                           promptText="Student name"
+                           HBox.hgrow="ALWAYS"/>
+
+                <Label text="Email:"/>
+
+                <TextField fx:id="emailField"
+                           promptText="Email"
+                           HBox.hgrow="ALWAYS"/>
+
+                <Label text="Age:"/>
+
+                <TextField fx:id="ageField"
+                           promptText="Age"
+                           prefWidth="80"/>
+            </HBox>
+
+            <HBox spacing="10">
+                <Button text="Add"
+                        onAction="#handleAdd"/>
+
+                <Button text="Update"
+                        onAction="#handleUpdate"/>
+
+                <Button text="Delete"
+                        onAction="#handleDelete"/>
+
+                <Button text="Clear"
+                        onAction="#handleClear"/>
+            </HBox>
+        </VBox>
+    </bottom>
+
+</BorderPane>

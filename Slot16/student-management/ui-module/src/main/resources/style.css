@@ -1,0 +1,26 @@
+.root {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14px;
+}
+
+.title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.button {
+    -fx-cursor: hand;
+    -fx-padding: 8px 14px;
+}
+
+.text-field {
+    -fx-padding: 8px;
+}
+
+.table-view {
+    -fx-border-width: 1px;
+}
+
+.table-row-cell:selected {
+    -fx-font-weight: bold;
+}

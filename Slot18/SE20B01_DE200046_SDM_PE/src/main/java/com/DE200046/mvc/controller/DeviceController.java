@@ -37,7 +37,7 @@ public class DeviceController {
         return statuses;
     }
 
-    // Q1: List and Search
+
     @GetMapping
     public String list(
             @RequestParam(value = "deviceName", required = false)
@@ -56,7 +56,7 @@ public class DeviceController {
         return "device-list";
     }
 
-    // Q2: Delete
+
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable Integer id,
                          RedirectAttributes redirectAttributes) {
@@ -78,7 +78,7 @@ public class DeviceController {
         return "redirect:/";
     }
 
-    // Q3.1: Show Add form
+
     @GetMapping("/add")
     public String showAddForm(Model model) {
         model.addAttribute("DeviceDTO", new DeviceDTO());
@@ -89,7 +89,7 @@ public class DeviceController {
         return "device-add";
     }
 
-    // Q3.2: Validate and Create
+
     @PostMapping("/add")
     public String create(
             @Valid @ModelAttribute("DeviceDTO") DeviceDTO deviceForm,
@@ -132,7 +132,6 @@ public class DeviceController {
         return "device-add";
     }
 
-    // Q4: View details
     @GetMapping("/view/{id}")
     public String view(@PathVariable Integer id, Model model) {
         Device device = deviceService.getById(id);

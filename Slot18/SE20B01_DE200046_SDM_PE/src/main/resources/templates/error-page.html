@@ -1,10 +1,21 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f6f9; }
+        .panel { max-width: 600px; margin: 60px auto; padding: 24px; background: white; border-radius: 8px; }
+        .error { color: #c0392b; }
+        a { color: #2471a3; }
+    </style>
 </head>
 <body>
-$END$
+<div class="panel">
+    <h2>Something went wrong</h2>
+    <p class="error" th:text="${errorMessage}"></p>
+    <a th:href="@{/}">Back to list</a>
+</div>
 </body>
 </html>

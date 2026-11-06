@@ -62,7 +62,7 @@ public class DeviceServiceImpl implements DeviceService {
             DeviceDTO dto,
             BindingResult result) {
 
-        // Device Code must be unique
+
         if (dto.getDeviceCode() != null
                 && deviceRepository.existsByDeviceCode(dto.getDeviceCode())) {
             result.rejectValue(
@@ -71,7 +71,7 @@ public class DeviceServiceImpl implements DeviceService {
             );
         }
 
-        // Device Name cannot have leading or trailing spaces
+
         if (dto.getDeviceName() != null
                 && !dto.getDeviceName().equals(dto.getDeviceName().trim())) {
             result.rejectValue(
@@ -80,7 +80,7 @@ public class DeviceServiceImpl implements DeviceService {
             );
         }
 
-        // Category must exist in database
+
         if (dto.getCategoryId() != null
                 && !categoryRepository.existsById(dto.getCategoryId())) {
             result.rejectValue(
@@ -89,7 +89,7 @@ public class DeviceServiceImpl implements DeviceService {
             );
         }
 
-        // Installation Date must be a valid future date
+
         if (dto.getInstallationDate() != null
                 && !dto.getInstallationDate().isBlank()) {
             try {
@@ -111,11 +111,14 @@ public class DeviceServiceImpl implements DeviceService {
             }
         }
 
-        // Status must be AC, IN or DR
+
         if (dto.getStatus() != null
+                && !dto.getStatus().isBlank()
                 && !Set.of("AC", "IN", "DR").contains(dto.getStatus())) {
+
             result.rejectValue(
-                    "status", "invalid",
+                    "status",
+                    "invalid",
                     "Status must be AC, IN or DR"
             );
         }

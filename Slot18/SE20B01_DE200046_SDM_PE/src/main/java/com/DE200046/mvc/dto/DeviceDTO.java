@@ -8,7 +8,7 @@ public class DeviceDTO {
 
     @NotBlank(message = "Device Code is required")
     @Pattern(
-            regexp = "^[A-Z]{3}[0-9]{3}$",
+            regexp = "^$|^[A-Z]{3}[0-9]{3}$",
             message = "Device Code must contain 3 uppercase letters followed by 3 digits"
     )
     private String deviceCode;

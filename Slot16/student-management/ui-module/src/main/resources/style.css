@@ -1,26 +1,46 @@
 .root {
     -fx-font-family: "Segoe UI";
-    -fx-font-size: 14px;
+    -fx-font-size: 13;
 }
 
-.title {
-    -fx-font-size: 24px;
+.header {
+    -fx-font-size: 22;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.subheader {
+    -fx-font-size: 16;
     -fx-font-weight: bold;
 }
 
-.button {
-    -fx-cursor: hand;
-    -fx-padding: 8px 14px;
+.btn-primary {
+    -fx-background-color: #27ae60;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
 }
 
-.text-field {
-    -fx-padding: 8px;
+.btn-warning {
+    -fx-background-color: #f39c12;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.btn-danger {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.button:disabled {
+    -fx-opacity: 0.45;
 }
 
 .table-view {
-    -fx-border-width: 1px;
+    -fx-border-color: #bdc3c7;
 }
 
-.table-row-cell:selected {
-    -fx-font-weight: bold;
+.msg {
+    -fx-padding: 5;
+    -fx-font-style: italic;
 }
